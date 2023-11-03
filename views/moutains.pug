@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1= title
+  
+
+  - let result  = [{ mountainName: "Nilgiri", Height: 2765, place: "Haryana"},{mountainName: "Satpura", Height: 3785, place: "jammu"},{mountainName: "Shivalik", Height: 2135, place: "Himalaya"}]
+  script.
+    function buy(num){
+      alert("You purchased items " + (num+1));
+    } 
+
+  div.container-fluid
+    div.row
+        each Moutains, num in result 
+            div.col-sm-2(onClick = `buy(${num})`)
+                p MoutainsName: #{Moutains.mountainName}
+                p height : #{Moutains.Height}
+                p Place : #{Moutains.place}

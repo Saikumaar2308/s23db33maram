@@ -1,0 +1,7 @@
+block content
+  h1= title
+  - var image_names = ['Himayala.jpeg', 'moutain1.jpeg', 'Nilgiri.jpeg', 'Satpura.jpeg', 'Shivalik.jpeg']
+
+  - for(let i = 0; i<3; i++)
+    - let index = Math.floor(Math.random()*5)
+    img(src=`/images/${ image_names[index]}`, alt=`${ image_names[index]}`, height="300", width="300")

@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1= title
+  p I have an interest in creating applications
+  button(type="button", class="btn btn-info", onClick='goFaster()') Press me
+  div(id = "faster") Increase the speed 
+  script.
+    var mph = 20;
+    var change = 1;
+
+    function goFaster(){
+      mph = mph + change; 
+      change = change + 1;
+      document.getElementById("faster").textContent = "MPH " + mph+ " with change " + change;
+     }
+
+     br
+  a(href="/Moutains") Moutains 
