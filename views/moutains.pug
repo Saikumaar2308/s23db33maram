@@ -2,9 +2,7 @@ extends layout
 
 block content
   h1= title
-  
-
-  - let result  = [{ mountainName: "Nilgiri", Height: 2765, place: "Haryana"},{mountainName: "Satpura", Height: 3785, place: "jammu"},{mountainName: "Shivalik", Height: 2135, place: "Himalaya"}]
+  - let items = results  
   script.
     function buy(num){
       alert("You purchased items " + (num+1));
@@ -12,7 +10,7 @@ block content
 
   div.container-fluid
     div.row
-        each Moutains, num in result 
+        each Moutains, num in items 
             div.col-sm-2(onClick = `buy(${num})`)
                 p MoutainsName: #{Moutains.mountainName}
                 p height : #{Moutains.Height}
