@@ -12,9 +12,17 @@ exports.moutains_list = async function(req, res) {
         };
 
 // for a specific moutains.
-exports.moutains_detail = function(req, res) {
-res.send('NOT IMPLEMENTED: moutains detail: ' + req.params.id);
+exports.moutains_detail = async function(req, res) {
+console.log("detail" + req.params.id)
+try {
+result = await moutains.findById( req.params.id)
+res.send(result)
+} catch (error) {
+res.status(500)
+res.send(`{"error": document for id ${req.params.id} not found`);
+}
 };
+
 // Handle moutains create on POST.
 exports.moutains_create_post = function(req, res) {
 res.send('NOT IMPLEMENTED: moutains create POST');
@@ -23,9 +31,25 @@ res.send('NOT IMPLEMENTED: moutains create POST');
 exports.moutains_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: moutains delete DELETE ' + req.params.id);
 };
-// Handle moutains update form on PUT.
-exports.moutains_update_put = function(req, res) {
-res.send('NOT IMPLEMENTED: moutains update PUT' + req.params.id);
+//Handle moutains update form on PUT.
+exports.moutains_update_put = async function(req, res) {
+console.log(`update on id ${req.params.id} with body
+${JSON.stringify(req.body)}`)
+try {
+let toUpdate = await moutains.findById( req.params.id)
+// Do updates of properties
+if(req.body.mountainName)
+toUpdate.mountainName = req.body.mountainName;
+if(req.body.height) toUpdate.height = req.body.height;
+if(req.body.place) toUpdate.place = req.body.place;
+let result = await toUpdate.save();
+console.log("Sucess " + result)
+res.send(result)
+} catch (err) {
+res.status(500)
+res.send(`{"error": ${err}: Update for id ${req.params.id}
+failed`);
+}
 };
 
 // VIEWS
