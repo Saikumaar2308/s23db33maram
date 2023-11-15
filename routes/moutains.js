@@ -9,8 +9,9 @@ var router = express.Router();
 router.get('/', moutains_controlers.moutains_view_all_Page );
 
 module.exports = router;
-// GET request for one costume.
+// GET request for one moutains.
 router.get('/moutains/:id', moutains_controlers.moutains_detail);
 
-
+/* GET detail moutains page */
+router.get('/detail', moutains_controlers.moutains_view_one_Page);
 

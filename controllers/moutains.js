@@ -28,9 +28,18 @@ exports.moutains_create_post = function(req, res) {
 res.send('NOT IMPLEMENTED: moutains create POST');
 };
 // Handle moutains delete form on DELETE.
-exports.moutains_delete = function(req, res) {
-res.send('NOT IMPLEMENTED: moutains delete DELETE ' + req.params.id);
-};
+exports.moutains_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await moutains.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+    };
+    
 //Handle moutains update form on PUT.
 exports.moutains_update_put = async function(req, res) {
 console.log(`update on id ${req.params.id} with body
@@ -65,6 +74,21 @@ exports.moutains_view_all_Page = async function(req, res) {
     }
     };
 
+
+
+    // Handle a show one view with id specified by query
+exports.moutains_view_one_Page = async function(req, res) {
+console.log("single view for id " + req.query.id)
+try{
+result = await moutains.findById( req.query.id)
+res.render('moutainsdetail',
+{ title: 'moutains Detail', toShow: result });
+}
+catch(err){
+res.status(500)
+res.send(`{'error': '${err}'}`);
+}
+};
     // Handle moutains create on POST.
 exports.moutains_create_post = async function(req, res) {
 console.log(req.body)
