@@ -1,0 +1,55 @@
+extends layout
+
+block content
+  h1= title
+  if toShow == null
+    h2 No instance to delete
+  else
+    - let moutainsid = toShow._id
+    - let mountainName = toShow.mountainName
+    - let moutainsheight = toShow.Height
+    - let moutainsPlace = toShow.place
+    - let actionid = "/resource/moutains/" + moutainsid
+
+    script.
+      let actionid = "#{actionid}"
+
+    div
+      div.row
+        div(class='moutainsAttr mr-3') moutains ID is:
+          div #{moutainsid}
+        div.row
+          div(class='moutainsAttr mr-3') moutains Name  is:
+            div #{mountainName}
+        div.row
+          div(class='moutainsAttr mr-3') moutains Height  is:
+            div #{moutainsheight}
+        div.row
+          div(class='moutainsAttr mr-3') moutains Place  is:
+            div #{moutainsPlace}
+        button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+        button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+
+    script.
+      function cancel() {
+        // Go back to the home page for the moutains collection
+        window.location.href='/moutains'
+      }
+
+    script.
+      function deleteOnid() {
+        console.log("starting delete")
+        // delete first
+        fetch(actionid, {
+          method: 'DELETE' // Don't need a body for the delete
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Delete succeeded")
+          window.location.href='/moutains'
+          // TODO handle body
+        }).catch((error) => {
+          // TODO handle error
+          alert("Delete failed " + error)
+        });
+      }

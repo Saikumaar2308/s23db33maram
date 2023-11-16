@@ -1,34 +1,34 @@
 extends layout
 
 block content
-    h1= title
+  h1= title
 
-    form(id='moutainsForm', action="/resource/moutains", method="POST")
-        div.form-group
-            label.moutainsAttr(for='moutainsName') moutains Name
-            input#moutainsName(type='text', name='moutainsName')
-        div.form-group
-            label.moutainsAttr(for='Place') moutains place
-            input#Place(type='text', name='Place')
-        div.form-group
-            label.moutainsAttr(for='height') moutains Height
-            input#height(type='number', name='height')
-        input(type="submit")
+  form(id='moutainsForm', action="/resource/moutains", method="POST")
+    div.form-group
+      label.moutainsAttr(for='moutainsName') Moutains Name
+      input#moutainsName.form-control(type='text', name='moutainsName', required)
+    div.form-group
+      label.moutainsAttr(for='Place') Moutains Place
+      input#Place.form-control(type='text', name='Place', required)
+    div.form-group
+      label.moutainsAttr(for='height') Moutains Height
+      input#height.form-control(type='number', name='height', required)
+    input.btn.btn-primary(type="submit", value="Save")
 
-    script.
-        document.forms['moutainsForm'].addEventListener('submit', (event) => {
-            event.preventDefault();
-            // TODO do something here to show user that form is being submitted
-            fetch(event.target.action, {
-            method: 'POST',
-            body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-            }).then((resp) => {
-            return resp.json(); // or resp.text() or whatever the server sends
-            }).then((body) => {
-            alert("Save succeded")
-            // TODO handle body
-            }).catch((error) => {
-            // TODO handle error
-            alert("Save failed " + error )
-            });
-        });
+  script.
+    document.forms['moutainsForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO: Show a loading indicator or feedback to the user
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target))
+      }).then((resp) => {
+        return resp.json();
+      }).then((body) => {
+        alert("Save succeeded");
+        // TODO: Handle success, update UI or redirect
+      }).catch((error) => {
+        alert("Save failed " + error);
+        // TODO: Handle error, provide user feedback
+      });
+    });

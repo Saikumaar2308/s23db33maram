@@ -21,3 +21,7 @@ router.get('/create', moutains_controlers.moutains_create_Page);
 /* GET create update page */
 router.get('/update', moutains_controlers.moutains_update_Page);
 
+/* GET delete moutains page */
+router.get('/delete', moutains_controlers.moutains_delete_Page);
+
+
