@@ -15,3 +15,9 @@ router.get('/moutains/:id', moutains_controlers.moutains_detail);
 /* GET detail moutains page */
 router.get('/detail', moutains_controlers.moutains_view_one_Page);
 
+/* GET create moutains page */
+router.get('/create', moutains_controlers.moutains_create_Page);
+
+/* GET create update page */
+router.get('/update', moutains_controlers.moutains_update_Page);
+

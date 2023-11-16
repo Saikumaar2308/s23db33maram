@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  h1= title
+  - let moutainsid = toShow._id
+  - let moutainsName = toShow.mountainName
+  - let moutainsheight = toShow.Height
+  - let moutainPlace = toShow.place 
+
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{moutainsid}
+
+  - let actionid = "/resource/moutains/" + moutainsid
+  form(id='moutainsForm', action= actionid, method="PUT")
+    div.form-group
+      label.moutainsAttr(for='MoutainsName') moutains Name
+      input#MoutainsName(type='text', name='MoutainsName', value= moutainsName )
+
+    div.form-group
+      label.moutainsAttr(for='Place') moutains Place
+      input#Place(type='text', name='Place', value= moutainPlace )
+
+    div.form-group
+      label.moutainsAttr(for='height') moutains height
+      input#height(type='number', name='height', value= moutainsheight )
+
+    input(type="submit")
+
+  script.
+    document.forms['moutainsForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show the user that the form is being submitted
+      fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Update succeeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Update failed " + error)
+      });
+    });
