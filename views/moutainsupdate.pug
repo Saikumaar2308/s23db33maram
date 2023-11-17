@@ -3,11 +3,14 @@ extends layout
 block content
   h1= title
   
-  - let moutainsid = toShow._id
-  - let moutainsName = toShow.mountainName
-  - let moutainsheight = toShow.Height
-  - let moutainPlace = toShow.place 
-
+  if toShow == null
+    h2 No instance to update 
+  else
+    - let moutainsid = toShow._id
+    - let mountainName = toShow.mountainName
+    - let moutainsheight = toShow.Height
+    - let moutainsPlace = toShow.place
+    
   div.row(class='mb-2')
     div.mr-1 ID is
     div #{moutainsid}
