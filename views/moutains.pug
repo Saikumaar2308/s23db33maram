@@ -8,10 +8,15 @@ block content
       alert("You purchased items " + (num+1));
     } 
 
+    function dispatch(path){
+      window.location.href = path;
+    }
+
   div.container-fluid
-    div.row
-        each Moutains, num in items 
-            div.col-sm-2(onClick = `buy(${num})`)
-                p MoutainsName: #{Moutains.mountainName}
-                p height : #{Moutains.Height}
-                p Place : #{Moutains.place}
+    div.row.m-1
+    each Moutains, num in items 
+      div.col-sm-2(onClick = `buy(${num})`)
+        p MoutainsName: #{Moutains.mountainName}
+        p height: #{Moutains.Height}
+        p Place: #{Moutains.place}
+        button.btn(class="btn-primary ml-1", onclick=`dispatch('/moutains/update?id=${Moutains._id}')`) Update
