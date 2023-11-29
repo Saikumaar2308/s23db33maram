@@ -12,7 +12,7 @@ block content
       input#Place.form-control(type='text', name='Place', required)
     div.form-group
       label.moutainsAttr(for='height') Moutains Height
-      input#height.form-control(type='number', name='height', required)
+      input#height.form-control(type='number' min = 0, max = 5000,  name='height', required)
     input.btn.btn-primary(type="submit", value="Save")
 
   script.
@@ -28,6 +28,7 @@ block content
         alert("Save succeeded");
         // TODO: Handle success, update UI or redirect
       }).catch((error) => {
+        console.log('error==>',error);
         alert("Save failed " + error);
         // TODO: Handle error, provide user feedback
       });

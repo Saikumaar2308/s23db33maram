@@ -1,25 +1,26 @@
 extends layout
-block content
-    h1= title
 
-if toShow == null
+block content
+  h1= title
+
+  if toShow == null
     h2 No instance to detail
   else
-    - let moutainsid = toShow._id
+    - let mountainsid = toShow._id
     - let mountainName = toShow.mountainName
-    - let moutainsheight = toShow.Height
-    - let moutainsPlace = toShow.place
-    
+    - let mountainsheight = toShow.Height
+    - let mountainsPlace = toShow.place
+
     div
-    div.row
-    div(class='moutainsAttr mr-3') moutains ID is:
-    div #{moutainsid}
-    div.row
-    div(class='moutainsAttr mr-3') moutains Name is:
-    div #{MoutainsName}
-    div.row
-    div(class='moutainsAttr mr-3') moutains height  is:
-    div #{height}
-    div.row
-    div(class='moutainsAttr mr-3') moutains Place is:
-    div #{Place}
+      div.row
+        div(class='mountainsAttr mr-3') Mountain ID is:
+          div #{mountainsid}
+      div.row
+        div(class='mountainsAttr mr-3') Mountain Name is:
+          div #{mountainName}
+      div.row
+        div(class='mountainsAttr mr-3') Mountain Height is:
+          div #{mountainsheight}
+      div.row
+        div(class='mountainsAttr mr-3') Mountain Place is:
+          div #{mountainsPlace}

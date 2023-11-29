@@ -23,10 +23,7 @@ res.send(`{"error": document for id ${req.params.id} not found`);
 }
 };
 
-// Handle moutains create on POST.
-exports.moutains_create_post = function(req, res) {
-res.send('NOT IMPLEMENTED: moutains create POST');
-};
+
 // Handle moutains delete form on DELETE.
 exports.moutains_delete = async function(req, res) {
     console.log("delete " + req.params.id)
@@ -135,14 +132,17 @@ exports.moutains_delete_Page = async function(req, res) {
     // Handle moutains create on POST.
 exports.moutains_create_post = async function(req, res) {
 console.log(req.body)
+console.log(req.body.moutainsName)
+console.log(req.body.height)
+console.log(req.body.Place)
 let document = new moutains();
 // We are looking for a body, since POST does not have query parameters.
 // Even though bodies can be in many different formats, we will be picky
 // and require that it be a json object
 // {"moutains_type":"goat", "cost":12, "size":"large"}
-document.mountainName = req.body.mountainName;
-document.Height = req.body.Height;
-document.place = req.body.place;
+document.mountainName = req.body.moutainsName;
+document.Height = req.body.height;
+document.place = req.body.Place;
 try{
 let result = await document.save();
 res.send(result);

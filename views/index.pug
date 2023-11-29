@@ -1,19 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p I have an interest in creating applications
-  button(type="button", class="btn btn-info", onClick='goFaster()') Press me
-  div(id = "faster") Increase the speed 
-  script.
-    var mph = 20;
-    var change = 1;
-
-    function goFaster(){
-      mph = mph + change; 
-      change = change + 1;
-      document.getElementById("faster").textContent = "MPH " + mph+ " with change " + change;
-     }
-
-     br
-  a(href="/Moutains") Moutains 
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/moutains") Take me to mountains
+    br
+    a(href="/logout") Logout

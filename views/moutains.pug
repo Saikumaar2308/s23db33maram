@@ -2,6 +2,9 @@ extends layout
 
 block content
   h1= title
+
+  a.btn.btn-primary(href='/moutains/create') Create
+  
   - let items = results  
   script.
     function buy(num){
@@ -20,3 +23,5 @@ block content
         p height: #{Moutains.Height}
         p Place: #{Moutains.place}
         button.btn(class="btn-primary ml-1", onclick=`dispatch('/moutains/update?id=${Moutains._id}')`) Update
+        button.btn(class="btn-primary ml-1", onclick=`dispatch('/moutains/delete?id=${Moutains._id}')`) delete 
+        button.btn(class="btn-primary ml-1", onclick=`dispatch('/moutains/detail?id=${Moutains._id}')`) detail
